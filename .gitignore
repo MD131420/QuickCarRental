@@ -1,0 +1,17 @@
+# Compiled backend
+BACKEND/target/
+
+# Frontend copied into backend (generated, not source)
+BACKEND/src/main/resources/static/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

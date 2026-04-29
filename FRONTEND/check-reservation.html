@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Check your QuickCarRental reservation status using your order number.">
+    <title>Check Reservation - QuickCarRental</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">Quick<span>Car</span>Rental</a>
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="check-reservation.html">My Reservation</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="btn btn-outline btn-sm">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="reservation-check-section">
+            <div class="container">
+                <h1>Check Your Reservation</h1>
+                <p class="section-subtitle">Enter your order number to view your booking details and status.</p>
+
+                <form id="reservation-search-form" class="reservation-search-form">
+                    <div class="search-input-group">
+                        <label for="token-input" class="sr-only">Order Number</label>
+                        <input type="text" id="token-input" name="token" placeholder="QCR-XXXX-XXXX" required aria-label="Order number">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+
+                <div id="reservation-result" class="reservation-result hidden">
+                    <div class="reservation-header">
+                        <h2>Reservation Details</h2>
+                        <span id="res-status" class="status-badge"></span>
+                    </div>
+
+                    <div class="reservation-details-grid">
+                        <div class="detail-card">
+                            <h3>Car Information</h3>
+                            <p><strong>Car:</strong> <span id="res-car-name">—</span></p>
+                            <p><strong>Category:</strong> <span id="res-car-category">—</span></p>
+                            <p><strong>License Plate:</strong> <span id="res-car-plate">—</span></p>
+                        </div>
+                        <div class="detail-card">
+                            <h3>Rental Dates</h3>
+                            <p><strong>Pickup:</strong> <span id="res-pickup-date">—</span></p>
+                            <p><strong>Return:</strong> <span id="res-return-date">—</span></p>
+                            <p><strong>Duration:</strong> <span id="res-duration">—</span></p>
+                        </div>
+                        <div class="detail-card">
+                            <h3>Locations</h3>
+                            <p><strong>Pickup Location:</strong> <span id="res-pickup-location">—</span></p>
+                            <p><strong>Return Location:</strong> <span id="res-return-location">—</span></p>
+                        </div>
+                        <div class="detail-card">
+                            <h3>Price Breakdown</h3>
+                            <p><strong>Daily Rate:</strong> <span id="res-daily-rate">—</span></p>
+                            <p><strong>Rental Days:</strong> <span id="res-rental-days">—</span></p>
+                            <p><strong>Extras:</strong> <span id="res-extras">—</span></p>
+                            <p class="price-total"><strong>Total:</strong> <span id="res-total-price">—</span></p>
+                        </div>
+                    </div>
+
+                    <div class="reservation-timeline">
+                        <h3>Rental Progress</h3>
+                        <div class="timeline">
+                            <div class="timeline-step" data-step="booked">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-label">Booked</span>
+                            </div>
+                            <div class="timeline-step" data-step="picked-up">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-label">Picked Up</span>
+                            </div>
+                            <div class="timeline-step" data-step="in-use">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-label">In Use</span>
+                            </div>
+                            <div class="timeline-step" data-step="returned">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-label">Returned</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="reservation-actions" class="reservation-actions">
+                        <button type="button" id="btn-cancel" class="btn btn-danger">Cancel Reservation</button>
+                        <button type="button" id="btn-modify" class="btn btn-secondary">Modify Dates</button>
+                        <button type="button" id="btn-extend" class="btn btn-secondary">Extend Rental</button>
+                        <button type="button" id="btn-download" class="btn btn-outline">Download Ticket</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modify Dates Modal -->
+    <div id="modify-modal" class="modal hidden" role="dialog" aria-labelledby="modify-modal-title" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modify-modal-title">Modify Rental Dates</h2>
+                <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <form id="modify-dates-form" class="modal-body">
+                <div class="form-group">
+                    <label for="modify-pickup-date">New Pickup Date</label>
+                    <input type="datetime-local" id="modify-pickup-date" name="pickupDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="modify-return-date">New Return Date</label>
+                    <input type="datetime-local" id="modify-return-date" name="returnDate" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Extend Rental Modal -->
+    <div id="extend-modal" class="modal hidden" role="dialog" aria-labelledby="extend-modal-title" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="extend-modal-title">Extend Rental</h2>
+                <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <form id="extend-rental-form" class="modal-body">
+                <div class="form-group">
+                    <label for="extend-return-date">New Return Date</label>
+                    <input type="datetime-local" id="extend-return-date" name="returnDate" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Extend Rental</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>QuickCarRental</h4>
+                    <p>Rent a car in seconds. No account needed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="cars.html">Browse Cars</a></li>
+                        <li><a href="check-reservation.html">Check Reservation</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>123 Rental Street, Warsaw</p>
+                    <p>+48 800 123 456</p>
+                    <p>info@quickcarrental.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickCarRental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+    <div id="global-spinner" class="global-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/reservation-check.js"></script>
+</body>
+</html>

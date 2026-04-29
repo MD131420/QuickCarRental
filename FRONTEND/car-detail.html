@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View car details and book your rental at QuickCarRental.">
+    <title>Car Details - QuickCarRental</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">Quick<span>Car</span>Rental</a>
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="check-reservation.html">My Reservation</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="btn btn-outline btn-sm">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="car-detail-page">
+            <div class="container">
+                <a href="cars.html" class="back-link">&larr; Back to Cars</a>
+
+                <div class="car-detail-layout">
+
+                    <div class="car-detail-left">
+                        <div id="car-image" class="car-image-placeholder">
+                            <img src="" alt="Car image" id="car-image-img" class="car-detail-img">
+                        </div>
+
+                        <div class="car-specs-section">
+                            <h3>Specifications</h3>
+                            <table id="car-specs" class="specs-table">
+                                <tbody>
+                                    <tr><th>Brand</th><td id="spec-brand">-</td></tr>
+                                    <tr><th>Model</th><td id="spec-model">-</td></tr>
+                                    <tr><th>Year</th><td id="spec-year">-</td></tr>
+                                    <tr><th>Transmission</th><td id="spec-transmission">-</td></tr>
+                                    <tr><th>Fuel Type</th><td id="spec-fuel">-</td></tr>
+                                    <tr><th>Seats</th><td id="spec-seats">-</td></tr>
+                                    <tr><th>Doors</th><td id="spec-doors">-</td></tr>
+                                    <tr><th>Air Conditioning</th><td id="spec-ac">-</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="car-detail-right">
+                        <h1 id="car-title">Loading...</h1>
+                        <span id="car-category" class="badge">-</span>
+                        <p class="car-price-display">
+                            <span id="car-price" class="price-large">-</span>
+                            <span class="price-period">/ day</span>
+                        </p>
+
+                        <div class="availability-section">
+                            <h3>Availability</h3>
+                            <div id="availability-calendar">
+                                <p class="text-muted">Loading availability...</p>
+                            </div>
+                        </div>
+
+                        <div class="booking-section">
+                            <h2>Book This Car</h2>
+                            <form id="booking-form" novalidate>
+
+                                <div class="form-group">
+                                    <label for="customer-name">Full Name <span class="required">*</span></label>
+                                    <input type="text" id="customer-name" name="customerName" required class="form-control" placeholder="John Doe">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer-email">Email <span class="required">*</span></label>
+                                    <input type="email" id="customer-email" name="customerEmail" required class="form-control" placeholder="john@example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer-phone">Phone <span class="required">*</span></label>
+                                    <input type="tel" id="customer-phone" name="customerPhone" required class="form-control" placeholder="+48 123 456 789">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="pickup-date">Pickup Date <span class="required">*</span></label>
+                                        <input type="date" id="pickup-date" name="pickupDate" required class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="return-date">Return Date <span class="required">*</span></label>
+                                        <input type="date" id="return-date" name="returnDate" required class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="pickup-location">Pickup Location <span class="required">*</span></label>
+                                        <select id="pickup-location" name="pickupLocation" required class="form-control">
+                                            <option value="">Select location</option>
+                                            <option value="AIRPORT">Airport</option>
+                                            <option value="CITY_CENTER">City Center</option>
+                                            <option value="TRAIN_STATION">Train Station</option>
+                                            <option value="HOTEL_DELIVERY">Hotel Delivery</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="return-location">Return Location <span class="required">*</span></label>
+                                        <select id="return-location" name="returnLocation" required class="form-control">
+                                            <option value="">Select location</option>
+                                            <option value="SAME_AS_PICKUP">Same as pickup</option>
+                                            <option value="AIRPORT">Airport</option>
+                                            <option value="CITY_CENTER">City Center</option>
+                                            <option value="TRAIN_STATION">Train Station</option>
+                                            <option value="HOTEL_DELIVERY">Hotel Delivery</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h4>Extras</h4>
+                                    <div class="extras-grid">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="extras" value="GPS" data-price="5"> GPS (+&euro;5/day)
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="extras" value="CHILD_SEAT" data-price="3"> Child Seat (+&euro;3/day)
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="extras" value="ADDITIONAL_DRIVER" data-price="10"> Additional Driver (+&euro;10/day)
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="extras" value="FULL_INSURANCE" data-price="15"> Full Insurance (+&euro;15/day)
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="extras" value="FUEL_PREPAY" data-price="40" data-flat="true"> Fuel Prepay (+&euro;40)
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="booking-notes">Notes</label>
+                                    <textarea id="booking-notes" name="notes" class="form-control" rows="3" placeholder="Any special requests or notes..."></textarea>
+                                </div>
+
+                                <div id="cost-summary" class="cost-summary">
+                                    <h4>Cost Summary</h4>
+                                    <div class="cost-line">
+                                        <span>Car rental (<span id="cost-days">0</span> days)</span>
+                                        <span id="cost-base">&euro;0.00</span>
+                                    </div>
+                                    <div id="cost-extras-list"></div>
+                                    <div class="cost-line cost-total">
+                                        <span>Total</span>
+                                        <span id="cost-total">&euro;0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="checkbox-label terms-label">
+                                        <input type="checkbox" id="terms-checkbox" name="termsAccepted" required>
+                                        I agree to the <a href="#" target="_blank">Terms and Conditions</a> <span class="required">*</span>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" id="confirm-booking-btn">Confirm Booking</button>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>QuickCarRental</h4>
+                    <p>Rent a car in seconds. No account needed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="cars.html">Browse Cars</a></li>
+                        <li><a href="check-reservation.html">Check Reservation</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>123 Rental Street, Warsaw</p>
+                    <p>+48 800 123 456</p>
+                    <p>info@quickcarrental.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickCarRental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+    <div id="global-spinner" class="global-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/booking.js"></script>
+</body>
+</html>

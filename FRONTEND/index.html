@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QuickCarRental - Rent a car in seconds. No account needed.">
+    <title>QuickCarRental - Rent a Car in 30 Seconds</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">Quick<span>Car</span>Rental</a>
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="check-reservation.html">My Reservation</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="btn btn-outline btn-sm">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Rent a Car in 30 Seconds</h1>
+                <p class="hero-subtitle">No Account Needed</p>
+                <p class="hero-description">Pick your car, fill a short form, and hit the road. It's that simple.</p>
+                <div class="hero-cta">
+                    <a href="cars.html" class="btn btn-primary btn-lg">Browse Cars</a>
+                    <a href="check-reservation.html" class="btn btn-outline btn-lg">Check Reservation</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps-grid">
+                    <div class="step">
+                        <div class="step-icon">&#x1F697;</div>
+                        <h3>Choose Your Car</h3>
+                        <p>Browse our fleet and pick the perfect car for your trip.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">&#x1F4DD;</div>
+                        <h3>Fill a Short Form</h3>
+                        <p>Enter your details and booking preferences. No registration required.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">&#x2705;</div>
+                        <h3>Get Your Order Number</h3>
+                        <p>Receive a unique reservation code instantly. You're ready to go!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-cars-section">
+            <div class="container">
+                <h2>Featured Cars</h2>
+                <div id="featured-cars">
+                    <div class="car-grid"></div>
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading featured cars...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>QuickCarRental</h4>
+                    <p>Rent a car in seconds. No account needed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="cars.html">Browse Cars</a></li>
+                        <li><a href="check-reservation.html">Check Reservation</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>123 Rental Street, Warsaw</p>
+                    <p>+48 800 123 456</p>
+                    <p>info@quickcarrental.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickCarRental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+    <div id="global-spinner" class="global-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/app.js?v=2"></script>
+</body>
+</html>

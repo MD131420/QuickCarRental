@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact QuickCarRental — get in touch with our team">
+    <title>Contact Us — QuickCarRental</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">Quick<span>Car</span>Rental</a>
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="check-reservation.html">My Reservation</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="admin.html" class="btn btn-outline btn-sm">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero hero-small">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>Have a question? We're here to help.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-form-wrapper">
+                        <h2>Send Us a Message</h2>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="contact-name">Full Name</label>
+                                <input type="text" id="contact-name" name="name" class="form-control" required placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="email" class="form-control" required placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-subject">Subject</label>
+                                <input type="text" id="contact-subject" class="form-control" required placeholder="What is this about?">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">Message</label>
+                                <textarea id="contact-message" name="message" class="form-control" rows="5" required placeholder="Your message..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info">
+                        <h2>Get in Touch</h2>
+                        <div class="info-item">
+                            <h4>Address</h4>
+                            <p>123 Rental Street<br>00-001 Warsaw, Poland</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Phone</h4>
+                            <p>+48 800 123 456</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Email</h4>
+                            <p>info@quickcarrental.com</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Working Hours</h4>
+                            <p>Monday — Friday: 8:00 — 20:00<br>Saturday: 9:00 — 16:00<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <h2 class="text-center">Frequently Asked Questions</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">Do I need to create an account to rent a car?</button>
+                        <div class="faq-answer">
+                            <p>No! QuickCarRental is designed for speed and simplicity. Just pick a car, fill in a short form with your name, email, and phone number, and you'll receive a unique order number to track your reservation. No registration required.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How do I check my reservation status?</button>
+                        <div class="faq-answer">
+                            <p>Go to the <a href="check-reservation.html">My Reservation</a> page and enter your order number (e.g., QCR-A7X9-K2M4). You'll see the full details of your booking, including its current status and a progress timeline.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I cancel my reservation?</button>
+                        <div class="faq-answer">
+                            <p>Yes, you can cancel a confirmed reservation as long as the pickup date is more than 24 hours away. Use your order number on the reservation page and click "Cancel Reservation".</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What payment methods do you accept?</button>
+                        <div class="faq-answer">
+                            <p>We currently accept cash and card payments at the time of pickup. Online payment functionality is coming soon. The total price shown during booking is the amount you'll pay at pickup.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I extend my rental period?</button>
+                        <div class="faq-answer">
+                            <p>Yes! If your rental is currently active, you can extend it as long as the car is available for the extended dates. Use the "Extend Rental" button on the reservation page.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What happens if I return the car late?</button>
+                        <div class="faq-answer">
+                            <p>Late returns incur additional daily charges at the standard rate for the vehicle. We recommend extending your rental through the website if you know you'll need the car longer to avoid any complications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>QuickCarRental</h4>
+                    <p>Rent a car in seconds. No account needed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="cars.html">Browse Cars</a></li>
+                        <li><a href="check-reservation.html">Check Reservation</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>123 Rental Street, Warsaw</p>
+                    <p>+48 800 123 456</p>
+                    <p>info@quickcarrental.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickCarRental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+    <script src="js/app.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+/* ========================================
+   QuickCarRental - Responsive Styles
+   ======================================== */
+
+/* --- Tablet / Small Desktop (max 1024px) --- */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .car-detail-grid {
+        gap: 1.5rem;
+    }
+}
+
+/* --- Tablet / Mobile (max 768px) --- */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    h1 { font-size: 1.875rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+
+    /* Navigation: show hamburger, hide links */
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1rem 1.5rem;
+        gap: 0;
+        border-bottom: 1px solid var(--gray-light);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--gray-light);
+        width: 100%;
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .navbar .container {
+        position: relative;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 3rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    /* Steps */
+    .steps-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Car grids */
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .car-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    /* Cars page: stack filters above content */
+    .cars-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-sidebar {
+        order: -1;
+    }
+
+    /* Car detail: stack image over info */
+    .car-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .car-detail-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Forms: stack side-by-side fields */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Contact: stack to single column */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Team & values grid */
+    .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Booking extras */
+    .extras-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Admin tabs: scroll horizontally */
+    .admin-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-btn {
+        padding: 0.625rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    /* Stats grid */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Data table: horizontal scroll */
+    .data-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Car specs */
+    .car-specs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Section spacing */
+    .section {
+        padding: 2rem 0;
+    }
+
+    /* Booking ticket */
+    .booking-ticket {
+        margin: 1.5rem auto;
+        padding: 1.5rem;
+    }
+
+    /* Toast */
+    .toast-container {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+
+    .toast {
+        min-width: unset;
+        max-width: unset;
+        width: 100%;
+    }
+
+    /* Reservation check */
+    .reservation-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-actions {
+        flex-direction: column;
+    }
+
+    .reservation-actions .btn {
+        width: 100%;
+    }
+
+    .reservation-timeline .timeline-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* --- Small Mobile (max 480px) --- */
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    h1 { font-size: 1.625rem; }
+    h2 { font-size: 1.375rem; }
+
+    /* Hero */
+    .hero {
+        padding: 2.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .hero .btn {
+        display: block;
+        width: 100%;
+        margin: 0.375rem 0;
+    }
+
+    /* Search input group stacks vertically */
+    .search-input-group {
+        flex-direction: column;
+        border-radius: var(--radius-card);
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .search-input-group input {
+        text-align: center;
+        padding: 0.75rem;
+    }
+
+    .search-input-group .btn {
+        width: 100%;
+        border-radius: var(--radius-input);
+    }
+
+    /* Full-width buttons */
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Cards */
+    .car-card img {
+        height: 160px;
+    }
+
+    .car-card-content {
+        padding: 1rem;
+    }
+
+    /* Booking form */
+    .booking-form {
+        padding: 1.25rem;
+    }
+
+    /* Stats grid */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1rem;
+    }
+
+    .modal-body .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Pagination */
+    .pagination {
+        flex-wrap: wrap;
+    }
+
+    .page-btn {
+        min-width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+
+    /* Booking ticket */
+    .booking-ticket {
+        padding: 1rem;
+    }
+
+    .booking-ticket .ticket-row {
+        flex-direction: column;
+        gap: 0.125rem;
+    }
+
+    /* Step icon */
+    .step-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 1.25rem;
+    }
+
+    /* Cost summary */
+    .cost-summary {
+        padding: 1rem;
+    }
+
+    /* Filters sidebar */
+    .filters-sidebar {
+        padding: 1rem;
+    }
+}

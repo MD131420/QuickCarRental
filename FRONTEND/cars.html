@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse and filter available rental cars at QuickCarRental.">
+    <title>Browse Cars - QuickCarRental</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">Quick<span>Car</span>Rental</a>
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="check-reservation.html">My Reservation</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="btn btn-outline btn-sm">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="cars-page">
+            <div class="container">
+                <h1>Browse Cars</h1>
+                <div class="cars-layout">
+
+                    <aside class="filters-sidebar">
+                        <h3>Filters</h3>
+
+                        <div class="filter-group">
+                            <label for="search-input">Search</label>
+                            <input type="text" id="search-input" name="search" placeholder="Search by name or brand..." class="form-control">
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Category</h4>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="ECONOMY"> Economy
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="COMFORT"> Comfort
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="SUV"> SUV
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="PREMIUM"> Premium
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="VAN"> Van
+                            </label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Transmission</h4>
+                            <label class="radio-label">
+                                <input type="radio" name="transmission" value="" checked> All
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="transmission" value="MANUAL"> Manual
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="transmission" value="AUTOMATIC"> Automatic
+                            </label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Fuel Type</h4>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="fuel" value="PETROL"> Petrol
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="fuel" value="DIESEL"> Diesel
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="fuel" value="ELECTRIC"> Electric
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="fuel" value="HYBRID"> Hybrid
+                            </label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Price Range (per day)</h4>
+                            <div class="price-range-inputs">
+                                <div>
+                                    <label for="min-price">Min</label>
+                                    <input type="number" id="min-price" name="minPrice" min="0" placeholder="0" class="form-control">
+                                </div>
+                                <div>
+                                    <label for="max-price">Max</label>
+                                    <input type="number" id="max-price" name="maxPrice" min="0" placeholder="500" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="seats-select">Seats</label>
+                            <select id="seats-select" name="seats" class="form-control">
+                                <option value="">Any</option>
+                                <option value="2">2+</option>
+                                <option value="4">4+</option>
+                                <option value="5">5+</option>
+                                <option value="7">7+</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button type="button" id="apply-filters" class="btn btn-primary">Apply Filters</button>
+                            <button type="button" id="reset-filters" class="btn btn-outline">Reset</button>
+                        </div>
+                    </aside>
+
+                    <div class="cars-content">
+                        <div class="cars-toolbar">
+                            <p id="results-count" class="results-count"></p>
+                            <div class="sort-wrapper">
+                                <label for="sort-select">Sort by:</label>
+                                <select id="sort-select" class="form-control">
+                                    <option value="price_asc">Price Low &rarr; High</option>
+                                    <option value="price_desc">Price High &rarr; Low</option>
+                                    <option value="name_asc">Name A &rarr; Z</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="car-list" class="car-grid"></div>
+
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                            <p>Loading cars...</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>QuickCarRental</h4>
+                    <p>Rent a car in seconds. No account needed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="cars.html">Browse Cars</a></li>
+                        <li><a href="check-reservation.html">Check Reservation</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>123 Rental Street, Warsaw</p>
+                    <p>+48 800 123 456</p>
+                    <p>info@quickcarrental.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickCarRental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+    <div id="global-spinner" class="global-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/cars.js"></script>
+</body>
+</html>

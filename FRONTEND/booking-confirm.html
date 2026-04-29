@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Booking confirmation - QuickCarRental">
+    <title>Booking Confirmed - QuickCarRental</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">Quick<span>Car</span>Rental</a>
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="check-reservation.html">My Reservation</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="btn btn-outline btn-sm">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="confirm-page">
+            <div class="container">
+
+                <div class="confirm-header">
+                    <div class="confirm-checkmark">&#x2713;</div>
+                    <h1>Booking Confirmed!</h1>
+                    <p class="confirm-subtitle">Your reservation has been successfully created.</p>
+                </div>
+
+                <div id="booking-ticket" class="booking-ticket">
+                    <div class="ticket-header">
+                        <h2>QuickCarRental</h2>
+                        <p>Booking Ticket</p>
+                    </div>
+
+                    <div class="ticket-token">
+                        <span class="ticket-label">Reservation Number</span>
+                        <span id="confirm-token" class="token-display">QCR-XXXX-XXXX</span>
+                    </div>
+
+                    <div class="ticket-grid">
+                        <div class="ticket-field">
+                            <span class="ticket-label">Car</span>
+                            <span id="confirm-car" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Pickup Date</span>
+                            <span id="confirm-pickup-date" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Return Date</span>
+                            <span id="confirm-return-date" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Pickup Location</span>
+                            <span id="confirm-pickup-location" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Return Location</span>
+                            <span id="confirm-return-location" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Total Price</span>
+                            <span id="confirm-price" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Customer Name</span>
+                            <span id="confirm-customer-name" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Email</span>
+                            <span id="confirm-customer-email" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Phone</span>
+                            <span id="confirm-customer-phone" class="ticket-value">-</span>
+                        </div>
+                        <div class="ticket-field">
+                            <span class="ticket-label">Booked At</span>
+                            <span id="confirm-timestamp" class="ticket-value">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="confirm-actions">
+                    <button type="button" class="btn btn-primary" id="download-ticket-btn" onclick="window.print()">Download Ticket</button>
+                    <a href="check-reservation.html" class="btn btn-outline" id="check-reservation-link">Check Reservation</a>
+                </div>
+
+                <div class="confirm-note">
+                    <p><strong>Important:</strong> Please save your reservation number. You will need it to check or modify your booking. A confirmation has also been sent to your email address.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>QuickCarRental</h4>
+                    <p>Rent a car in seconds. No account needed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="cars.html">Browse Cars</a></li>
+                        <li><a href="check-reservation.html">Check Reservation</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>123 Rental Street, Warsaw</p>
+                    <p>+48 800 123 456</p>
+                    <p>info@quickcarrental.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickCarRental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+    <div id="global-spinner" class="global-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/app.js?v=2"></script>
+</body>
+</html>

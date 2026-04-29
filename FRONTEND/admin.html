@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QuickCarRental Admin Panel - Manage cars, bookings, and monitor dashboard.">
+    <title>Admin Panel - QuickCarRental</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">Quick<span>Car</span>Rental</a>
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="check-reservation.html">My Reservation</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="btn btn-outline btn-sm">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Login Overlay -->
+        <div id="admin-login" class="admin-login-overlay">
+            <div class="admin-login-card">
+                <h1>Admin Login</h1>
+                <p>Enter the admin password to access the panel.</p>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" name="password" placeholder="Enter admin password" required>
+                    </div>
+                    <div id="login-error" class="error-message hidden"></div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Container -->
+        <div id="admin-container" class="admin-container hidden">
+            <div class="container">
+                <div class="admin-header">
+                    <h1>Admin Panel</h1>
+                    <button type="button" id="admin-logout" class="btn btn-outline btn-sm">Logout</button>
+                </div>
+
+                <div class="admin-tabs">
+                    <button type="button" class="tab-btn active" data-tab="panel-dashboard">Dashboard</button>
+                    <button type="button" class="tab-btn" data-tab="panel-cars">Manage Cars</button>
+                    <button type="button" class="tab-btn" data-tab="panel-bookings">Manage Bookings</button>
+                    <button type="button" class="tab-btn" data-tab="panel-messages">Messages <span id="unread-badge" class="unread-badge hidden">0</span></button>
+                </div>
+
+                <!-- Dashboard Panel -->
+                <div id="panel-dashboard" class="admin-panel active">
+                    <h2>Dashboard</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card" id="stat-total-cars">
+                            <span class="stat-icon">&#x1F697;</span>
+                            <div class="stat-info">
+                                <span class="stat-value">0</span>
+                                <span class="stat-label">Total Cars</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" id="stat-active-bookings">
+                            <span class="stat-icon">&#x1F4C5;</span>
+                            <div class="stat-info">
+                                <span class="stat-value">0</span>
+                                <span class="stat-label">Active Bookings</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" id="stat-available-cars">
+                            <span class="stat-icon">&#x2705;</span>
+                            <div class="stat-info">
+                                <span class="stat-value">0</span>
+                                <span class="stat-label">Available Cars</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" id="stat-daily-revenue">
+                            <span class="stat-icon">&#x1F4B0;</span>
+                            <div class="stat-info">
+                                <span class="stat-value">0 PLN</span>
+                                <span class="stat-label">Daily Revenue</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" id="stat-unread-messages">
+                            <span class="stat-icon">&#x2709;&#xFE0F;</span>
+                            <div class="stat-info">
+                                <span class="stat-value">0</span>
+                                <span class="stat-label">Unread Messages</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-section">
+                        <h3>Bookings Overview</h3>
+                        <div id="bookings-chart" class="bookings-chart">
+                            <div class="chart-placeholder">Loading chart data...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Cars Panel -->
+                <div id="panel-cars" class="admin-panel">
+                    <div class="panel-header">
+                        <h2>Manage Cars</h2>
+                        <button type="button" id="btn-add-car" class="btn btn-primary">Add New Car</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="cars-table" class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Brand</th>
+                                    <th>Model</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Messages Panel -->
+                <div id="panel-messages" class="admin-panel">
+                    <div class="panel-header">
+                        <h2>Contact Messages</h2>
+                        <button type="button" id="btn-mark-all-read" class="btn btn-outline btn-sm">Mark All as Read</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="messages-table" class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Manage Bookings Panel -->
+                <div id="panel-bookings" class="admin-panel">
+                    <div class="panel-header">
+                        <h2>Manage Bookings</h2>
+                        <div class="filter-group">
+                            <label for="booking-status-filter" class="sr-only">Filter by status</label>
+                            <select id="booking-status-filter" name="statusFilter">
+                                <option value="">All Statuses</option>
+                                <option value="CONFIRMED">Confirmed</option>
+                                <option value="ACTIVE">Active</option>
+                                <option value="COMPLETED">Completed</option>
+                                <option value="CANCELLED">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="bookings-table" class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Token</th>
+                                    <th>Customer</th>
+                                    <th>Car</th>
+                                    <th>Dates</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Car Form Modal -->
+    <div id="car-modal" class="modal hidden" role="dialog" aria-labelledby="car-modal-title" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2 id="car-modal-title">Add New Car</h2>
+                <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <form id="car-form" class="modal-body">
+                <input type="hidden" id="car-id" name="id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-brand">Brand</label>
+                        <input type="text" id="car-brand" name="brand" placeholder="e.g. Toyota" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-model">Model</label>
+                        <input type="text" id="car-model" name="model" placeholder="e.g. Corolla" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-year">Year</label>
+                        <input type="number" id="car-year" name="year" placeholder="e.g. 2024" min="2000" max="2030" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-category">Category</label>
+                        <select id="car-category" name="category" required>
+                            <option value="">Select category</option>
+                            <option value="ECONOMY">Economy</option>
+                            <option value="COMFORT">Comfort</option>
+                            <option value="SUV">SUV</option>
+                            <option value="PREMIUM">Premium</option>
+                            <option value="VAN">Van</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-price">Price per Day (PLN)</label>
+                        <input type="number" id="car-price" name="pricePerDay" placeholder="e.g. 150" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-seats">Seats</label>
+                        <input type="number" id="car-seats" name="seats" placeholder="e.g. 5" min="1" max="15" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-transmission">Transmission</label>
+                        <select id="car-transmission" name="transmission" required>
+                            <option value="">Select transmission</option>
+                            <option value="automatic">Automatic</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-fuel">Fuel Type</label>
+                        <select id="car-fuel" name="fuelType" required>
+                            <option value="">Select fuel type</option>
+                            <option value="petrol">Petrol</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electric">Electric</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="car-plate">License Plate</label>
+                        <input type="text" id="car-plate" name="licensePlate" placeholder="e.g. WA 12345" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="car-status">Status</label>
+                        <select id="car-status" name="status" required>
+                            <option value="available">Available</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="retired">Retired</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="car-image">Image URL</label>
+                    <input type="url" id="car-image" name="imageUrl" placeholder="https://example.com/car.jpg">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Car</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Detail Modal -->
+    <div id="booking-detail-modal" class="modal hidden" role="dialog" aria-labelledby="booking-detail-title" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="booking-detail-title">Booking Details</h2>
+                <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="booking-detail-content">
+                    <p><strong>Token:</strong> <span id="detail-token">—</span></p>
+                    <p><strong>Customer:</strong> <span id="detail-customer">—</span></p>
+                    <p><strong>Email:</strong> <span id="detail-email">—</span></p>
+                    <p><strong>Phone:</strong> <span id="detail-phone">—</span></p>
+                    <p><strong>Car:</strong> <span id="detail-car">—</span></p>
+                    <p><strong>Pickup Date:</strong> <span id="detail-pickup">—</span></p>
+                    <p><strong>Return Date:</strong> <span id="detail-return">—</span></p>
+                    <p><strong>Pickup Location:</strong> <span id="detail-pickup-loc">—</span></p>
+                    <p><strong>Return Location:</strong> <span id="detail-return-loc">—</span></p>
+                    <p><strong>Total Price:</strong> <span id="detail-total">—</span></p>
+                    <p><strong>Status:</strong> <span id="detail-status">—</span></p>
+                </div>
+                <div class="form-group">
+                    <label for="detail-status-change">Change Status</label>
+                    <select id="detail-status-change" name="statusChange">
+                        <option value="booked">Booked</option>
+                        <option value="picked-up">Picked Up</option>
+                        <option value="in-use">In Use</option>
+                        <option value="returned">Returned</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Close</button>
+                    <button type="button" id="btn-save-status" class="btn btn-primary">Update Status</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message View Modal -->
+    <div id="message-view-modal" class="modal hidden" role="dialog" aria-labelledby="message-view-title" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="message-view-title">Message</h2>
+                <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>From:</strong> <span id="msg-name">—</span></p>
+                <p><strong>Email:</strong> <span id="msg-email">—</span></p>
+                <p><strong>Subject:</strong> <span id="msg-subject">—</span></p>
+                <p><strong>Date:</strong> <span id="msg-date">—</span></p>
+                <hr style="margin: 1rem 0; border-color: var(--gray-light)">
+                <p id="msg-body" style="white-space: pre-wrap; line-height: 1.7; color: var(--dark)">—</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-confirm-modal" class="modal hidden" role="dialog" aria-labelledby="delete-confirm-title" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h2 id="delete-confirm-title">Confirm Deletion</h2>
+                <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="button" id="btn-confirm-delete" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+    <div id="global-spinner" class="global-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>QuickCarRental</h4>
+                    <p>Rent a car in seconds. No account needed.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="cars.html">Browse Cars</a></li>
+                        <li><a href="check-reservation.html">Check Reservation</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>123 Rental Street, Warsaw</p>
+                    <p>+48 800 123 456</p>
+                    <p>info@quickcarrental.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickCarRental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
