@@ -19,3 +19,6 @@ Thumbs.db
 
 # Local portable JDK (downloaded by START.bat if needed)
 .jdk/
+
+# Local database config (contains MySQL password - never commit this)
+BACKEND/config/

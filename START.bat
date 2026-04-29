@@ -71,12 +71,35 @@ exit /b 1
 :java_ready
 
 :: ================================================================
-:: MYSQL REMINDER
+:: MYSQL PASSWORD SETUP (runs once, saves to BACKEND\config\)
+:: Spring Boot automatically reads BACKEND\config\application.properties
+:: and it overrides the password baked into the JAR.
 :: ================================================================
+if exist "%BACKEND_DIR%\config\application.properties" goto :db_config_ready
+
 echo.
-echo  [!] MySQL must be running.  Default password in this project: 1234
-echo      If yours is different, edit before continuing:
-echo      BACKEND\src\main\resources\application.properties
+echo  ============================================
+echo   MySQL Database Setup  (one-time)
+echo  ============================================
+echo.
+echo  This project connects to MySQL as user "root".
+echo  Enter your MySQL root password below.
+echo  (Press Enter to use the default: 1234)
+echo.
+set "DB_PWD="
+set /p DB_PWD=  MySQL root password:
+if "%DB_PWD%"=="" set "DB_PWD=1234"
+
+mkdir "%BACKEND_DIR%\config" >nul 2>&1
+> "%BACKEND_DIR%\config\application.properties" echo spring.datasource.password=%DB_PWD%
+echo.
+echo [OK] Password saved. To change it later, delete:
+echo      BACKEND\config\application.properties
+echo      and restart START.bat.
+echo.
+
+:db_config_ready
+echo  [!] MySQL must be running before continuing.
 echo.
 echo  Press any key to continue, or close this window to cancel...
 pause >nul
