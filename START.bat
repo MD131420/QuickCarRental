@@ -1,5 +1,4 @@
 @echo off
-setlocal enabledelayedexpansion
 title QuickCarRental - Startup
 color 0A
 echo.
@@ -10,7 +9,7 @@ echo.
 
 :: ---- Find Java and set JAVA_HOME ----
 
-:: 1) If JAVA_HOME is already set and valid, use it
+:: 1) Use existing JAVA_HOME if it is already valid
 if defined JAVA_HOME (
     if exist "%JAVA_HOME%\bin\java.exe" (
         echo [OK] JAVA_HOME already set: %JAVA_HOME%
@@ -18,30 +17,34 @@ if defined JAVA_HOME (
     )
 )
 
-:: 2) Try to find java.exe in PATH and derive JAVA_HOME from it
-set "JAVA_EXE="
-for /f "delims=" %%i in ('where java.exe 2^>nul') do (
-    if not defined JAVA_EXE set "JAVA_EXE=%%i"
+:: 2) Look for java.exe anywhere in PATH
+where java.exe >nul 2>&1
+if %errorlevel% neq 0 goto :no_java
+
+:: Get the path of the first java.exe found
+for /f "tokens=* delims=" %%i in ('where java.exe') do (
+    set "JAVA_EXE=%%i"
+    goto :got_java
 )
 
-if not defined JAVA_EXE goto :no_java
-
-:: Derive JAVA_HOME by removing \bin\java.exe from the end of the path
+:got_java
+:: Java always lives at  <JAVA_HOME>\bin\java.exe
+:: Remove the \bin\java.exe suffix to get JAVA_HOME
 set "JAVA_HOME=%JAVA_EXE:\bin\java.exe=%"
 
-if not exist "%JAVA_HOME%\bin\java.exe" goto :no_java
-
-echo [OK] Java found: %JAVA_EXE%
-echo [OK] JAVA_HOME set to: %JAVA_HOME%
-goto :java_found
+if exist "%JAVA_HOME%\bin\java.exe" (
+    echo [OK] Java found:   %JAVA_EXE%
+    echo [OK] JAVA_HOME set: %JAVA_HOME%
+    goto :java_found
+)
 
 :no_java
 echo.
 echo [ERROR] Java not found!
 echo.
 echo  Please install Java 17+ from: https://adoptium.net/
-echo  During installation, select "Add to PATH".
-echo  Then RESTART this window and run START.bat again.
+echo  During installation tick "Add to PATH".
+echo  Then close this window, open a NEW cmd window, and run START.bat again.
 echo.
 pause
 exit /b 1
@@ -55,7 +58,7 @@ echo      Default DB password in this project: 1234
 echo.
 echo      If YOUR MySQL password is different, edit:
 echo      BACKEND\src\main\resources\application.properties
-echo      (change: spring.datasource.password=1234)
+echo      (change the line:  spring.datasource.password=1234)
 echo.
 echo  Press any key to continue, or close this window to cancel...
 pause >nul
@@ -91,7 +94,7 @@ if %errorlevel% neq 0 (
     echo.
     echo [ERROR] Build failed! Check the output above for errors.
     echo         Common causes:
-    echo           - Wrong Java version (need Java 17+^)
+    echo           - Wrong Java version ^(need Java 17+^)
     echo           - No internet connection on first run
     echo           - MySQL not running
     echo.
