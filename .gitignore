@@ -1,5 +1,6 @@
-# Compiled backend
-BACKEND/target/
+# Compiled backend - everything except the final runnable JAR
+BACKEND/target/**
+!BACKEND/target/quickcarrental-1.0.0.jar
 
 # Frontend copied into backend (generated, not source)
 BACKEND/src/main/resources/static/
@@ -15,3 +16,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Local portable JDK (downloaded by START.bat if needed)
+.jdk/
